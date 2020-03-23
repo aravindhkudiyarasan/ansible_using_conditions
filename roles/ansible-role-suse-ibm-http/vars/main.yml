@@ -6,6 +6,8 @@ apache_user: webadm
 apache_group: webgrp
 apache_port: 8010
 mount_point: /appl/IBM
+agent_installer: agent.installer.linux.gtk.x86_64_1.9.1000.20191001_1228.zip
+dir_ibm_im: /appl/Source/ibm_im
 #######
 ibm_ihs_installer: was.repo.9000.ihs.zip
 java_sdk: ibm-java-sdk-8.0-6.0-linux-x64-installmgr.zip

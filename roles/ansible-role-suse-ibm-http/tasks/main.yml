@@ -1,33 +1,59 @@
-- name: Validate if IHS is already configured or not
+
+--- 
+## IIM installation tasks ##
+
+- name: pre-requiistes check validation
+  include_tasks: preflight_check.yml
+
+- name: Validate if IIM is already installed or not
   include_tasks: validate.yml
 
+- name: Create Directory and Extract the installer file
+  include_tasks: extract.yml
+  when: iim_installation_status.stat.exists == false 
+
+- name: Remove if there are any old files
+  include_tasks: del_old.yml
+  when: iim_installation_status.stat.exists == false
+
+- name: Run Installer to accept License
+  include_tasks: accept_lic.yml
+  when: iim_installation_status.stat.exists == false
+  register: ibm_iim_output
+  
+  ## IHS installation tasks ##
+  
+- name: Validate if IHS is already configured or not
+  include_tasks: validate_ihs.yml
+  when: iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
+  
 - name: Create directory and Extract WAS file
   include_tasks: extract_ihs.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: Extract IBM SDK
   include_tasks: extract_sdk.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: List avilable Packages
   include_tasks: list_package.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: Delete Old HTTP files and Run Installer
   include_tasks: configure.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: Change Ownership of the HTTP folder and Start apache_run
   include_tasks: configure_http.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: creating IHS start and stop scripts when server reboots
   include_tasks: ihs_restart.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: IHS log archive
   include_tasks: ihs_log_archive.yml
-  when: not ihs_already_installed
+  when: not ihs_already_installed and iim_installation_status.stat.exists == "true" or iim_installation_status.stat.exists == "true"
 
 - name: Remove apache and Source Temporary Directory
-  include_tasks: del_src.yml
+  include_tasks: del_src_ihs.yml
