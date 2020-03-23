@@ -1,0 +1,20 @@
+---
+#
+# Variables
+#######
+apache_user: webadm
+apache_group: webgrp
+apache_port: 8010
+mount_point: /appl/IBM
+#######
+java_sdk: ibm-java-sdk-8.0-6.0-linux-x64-installmgr.zip
+dir_tmp_src: /appl/Source
+dir_ibm_sdk: /appl/Source/ibmsdk
+ibm_wct_installer: was.repo.90500.wct.zip
+ibm_wct_installer_rp: 9.0.5-WS-WCT-RP.zip
+ibm_wct_installer_fp: 9.0.5-WS-WCT-FP002.zip
+dir_wct_base: /appl/Source/wct
+dir_wct_rp: /appl/Source/wct_rp
+dir_wct_fp: /appl/Source/wct_fp
+dir_app_wct: /appl/IBM/WebSphere/Toolbox
+dir_install_mgr: /appl/IBM/InstallationManager

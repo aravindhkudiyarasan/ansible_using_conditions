@@ -1,0 +1,9 @@
+- name: Delete Source and Operations files
+  file:
+    path: "{{dir_tmp_opr}}/"
+    state: absent
+
+- name: Delete Source and Operations files
+  file:
+    path: "{{dir_tmp_src}}/"
+    state: absent

@@ -1,0 +1,37 @@
+
+- name: Copy ihs start script
+  copy: 
+    src: templates/ihsstart.sh
+    dest: "/etc/init.d/"
+    group: root
+    owner: root
+    mode: '0755'
+    force: yes
+
+- name: Copy ihs stop script
+  copy:
+    src: templates/ihsstop.sh
+    dest: "/etc/init.d/"
+    group: root
+    owner: root
+    mode: '0755'
+    force: yes
+
+- name: Create a symbolic link
+  file:
+    src: /etc/init.d/ihsstart.sh
+    dest: /etc/init.d/rc3.d/S50ihsstart
+    owner: root
+    group: root
+    state: link
+    mode: 0777
+
+- name: Create a symbolic link
+  file:
+    src: /etc/init.d/ihsstop.sh
+    dest: /etc/init.d/rc3.d/K50ihsstop
+    owner: root
+    group: root
+    state: link
+    mode: 0777
+

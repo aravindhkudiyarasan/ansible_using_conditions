@@ -1,0 +1,29 @@
+- name: 'create scripts directory'
+  file:
+    path: /appl/IBM/HTTPServer/scripts
+    state: directory
+    owner: '{{ apache_user }}'
+    group: '{{ apache_group }}'
+    mode: "0755"
+    recurse: yes
+
+- name: Copy IHS log archive script
+  copy:
+    src: templates/ihs_log_archive.sh
+    dest: "/appl/IBM/HTTPServer/scripts"
+    group: '{{ apache_group }}'
+    owner: '{{ apache_user }}'
+    mode: '0755'
+    force: yes
+
+- name: "Cronjob Entry"
+  cron:
+    name: "### IHS log retension policy ###"
+    minute: "00"
+    hour: "12"
+    day: "*"
+    month: "*"
+    weekday: "*"
+    job: /appl/IBM/HTTPServer/scripts/ihs_log_archive.sh
+
+

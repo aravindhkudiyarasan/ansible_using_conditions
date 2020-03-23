@@ -1,0 +1,34 @@
+- name: Register Host in Dynamic Inventory
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Adding hosts
+      add_host:
+        hostname: "{{item}}"
+        groupname: myhosts
+      with_items: "{{myhost}}"
+- hosts: myhosts
+  become: true
+
+  roles:
+    - role: ansible-role-suse-ibm-installationmgr
+      when:  " 'iim' in component_list  or   'ihs' in component_list " 
+#      when: " 'iim' in component_list or  'ihs' in component_list or 'plugin' in component_list or 'wct' in component_list" 
+      
+    - role: ansible-role-suse-ibm-http
+      when: " 'ihs' in component_list " 
+
+#    - role: ansible-role-suse-ibm-plugin
+#      when:  " 'plugin' in component_list "
+
+#    - role: ansible-role-suse-ibm-wct
+#      when: " 'wct' in component_list "
+
+  tasks:
+    - name: Check the logged in user
+      shell: |
+        whoami
+        exit 0
+      register: output
+    #
+    - debug: var=output.stdout

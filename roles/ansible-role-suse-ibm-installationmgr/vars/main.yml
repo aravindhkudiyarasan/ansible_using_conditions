@@ -1,0 +1,12 @@
+---
+#
+# Variables
+#######
+apache_user: webadm
+apache_group: webgrp
+mount_point: /appl/IBM
+#######
+agent_installer: agent.installer.linux.gtk.x86_64_1.9.1000.20191001_1228.zip
+dir_tmp_src: /appl/Source
+dir_ibm_im: /appl/Source/ibm_im
+dir_install_mgr: /appl/IBM/InstallationManager

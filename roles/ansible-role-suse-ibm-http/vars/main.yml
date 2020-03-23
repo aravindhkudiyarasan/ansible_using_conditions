@@ -1,0 +1,27 @@
+---
+#
+# Variables
+#######
+apache_user: webadm
+apache_group: webgrp
+apache_port: 8010
+mount_point: /appl/IBM
+#######
+ibm_ihs_installer: was.repo.9000.ihs.zip
+java_sdk: ibm-java-sdk-8.0-6.0-linux-x64-installmgr.zip
+#opr_dir: /appl/Source
+#dir_tmp_opr: /appl/Source
+dir_tmp_src: /appl/Source
+dir_ibm_ihs: /appl/Source/ihs
+dir_ibm_sdk: /appl/Source/ibmsdk
+dir_app_http: /appl/IBM/HTTPServer
+dir_install_mgr: /appl/IBM/InstallationManager
+###############################
+
+ibm_ihs_installer_fp: 9.0.5-WS-IHSPLG-FP002.zip 
+ibm_ihs_installer_rp: 9.0.5-WS-IHSPLG-RP.zip
+dir_ibm_ihs_fp: /appl/Source/ihs_fp
+dir_ibm_ihs_rp: /appl/Source/ihs_rp
+
+###############################
+ihs_already_installed: false
